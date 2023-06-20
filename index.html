@@ -1,0 +1,203 @@
+<!-- https://css-tricks.com/working-with-javascript-media-queries/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .menuNav {
+        /* background-color: rgb(63, 63, 63); */
+        background-color: darkblue;
+        font-family: 'Roboto Condensed';
+        display: flex;
+        box-sizing: border-box;
+    }
+
+    .boxTeste {
+        position: fixed;
+        bottom: 30px;
+        right: 2px;
+        background-color: skyblue;
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+    }
+
+    /* 
+    .btnLogin {
+        position: fixed;
+        right: 10px;
+    }
+
+    #btnRegistrar {
+        position: fixed;
+        right: 60px;
+    } */
+
+    @media (min-width: 700px) {
+        header {
+            background: red;
+            height: 120px;
+        }
+
+        .menuNav {
+            font-size: 25px;
+        }
+
+        ul {
+            list-style: none;
+            list-style-type: none;
+            display: flex;
+        }
+
+        li a {
+            padding: 10px 10px;
+            text-decoration: none;
+            color: white;
+            display: flex;
+
+        }
+
+        box-icon {
+            display: none;
+        }
+    }
+
+    @media (max-width: 699px) {
+        header {
+            background: red;
+            height: 80px;
+        }
+
+        .menuNav {
+            font-size: 15px;
+        }
+
+        ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        li a {
+            padding: 10px 10px;
+            text-decoration: none;
+            color: white;
+            display: flex;
+        }
+
+        li a:hover {
+            background-color: lightskyblue;
+            color: black;
+        }
+
+        box-icon {
+            display: none;
+        }
+
+    }
+
+    @media (max-width: 500px) {
+        header {
+            background: red;
+            height: 40px;
+        }
+
+        ul {
+            display: none;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        box-icon {
+            display: block;
+        }        
+    }
+</style>
+
+<body>
+    <header>
+        <nav class="menuNav">
+            <box-icon name='menu' color="white" size="md" style="background-color: black;" onclick="startButton();">
+            </box-icon>
+            <ul>
+                <li>
+                    <a href="#inicio">Início</a>
+                </li>
+                <li>
+                    <a href="#cursos">Cursos</a>
+                </li>
+                <li>
+                    <a href="#sobre">Sobre</a>
+                </li>
+                <li>
+                    <a href="#contato">Contato</a>
+                </li>
+                <!-- <li>
+                    <div id="btnRegistrar">
+                        <a href="#registrar">Registrar</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="btnLogin">
+                        <a href="#login">Login</a>
+                    </div>
+                </li> -->
+            </ul>
+        </nav>
+    </header>
+    <!---->
+    <div class="boxTeste">
+    </div>
+    <script>
+        var menuAtivo = false;
+        var ul = document.querySelector('ul');
+
+        function startButton() {
+
+            if (!menuAtivo) {
+                ul.style.display = "block";
+                menuAtivo = true;
+            } else if (menuAtivo == true) {
+                ul.style.display = "none";
+                menuAtivo = false;
+            }
+        }
+
+        // Create a media condition that targets viewports at least 501px wide
+        const mediaQuery = window.matchMedia('(min-width: 500px)');
+
+        function redimensionarMenu(e) {
+            // Check if the media query is true
+            if (e.matches) {
+                // Then trigger an alert
+                //alert('Media Query Matched!')
+                ul.style.display = "flex";
+            } else {
+                ul.style = null;
+                ul.style.display = "none";
+            }
+        }
+
+        mediaQuery.addListener(redimensionarMenu);
+
+        redimensionarMenu(mediaQuery);
+
+    </script>
+</body>
+
+</html>
